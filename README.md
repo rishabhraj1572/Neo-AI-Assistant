@@ -27,7 +27,7 @@ To run this project, follow these steps:
 
 ## License
 
-This project is licensed - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed - see the [License.md](license.md) file for details.
 
 ## Acknowledgments
 
