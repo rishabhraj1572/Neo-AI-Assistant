@@ -21,7 +21,7 @@ To run this project, follow these steps:
 ## Usage
 
    ```bash
-    pip install -r requirements.txt
+    python run.py
    ```
 
 
