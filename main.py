@@ -1,21 +1,12 @@
 import cv2
 from PIL import Image
 
-email_addresses = {
-    'myself': 'rishabhpao2012@gmail.com',
-    'friend':'rajrishav011@gmail.com',
-    'alvin':'michaelalvinalbert@gmail.com',
-    'alwin':'michaelalvinalbert@gmail.com'
-    }
-
+email_addresses = {		email_addresses = {
+    'myself': 'YOUR_EMAIL',
+}
 phone_numbers = {
-    'myself': '917079110310',
-    'friend':'918271228935',
-    'alvin':'916201049617',
-    'alwin':'916201049617',
-    'arca':'918389810093',
-    'arka':'918389810093',
-    }
+    'myself': 'YOUR_WHATSAPP_NUMBER',
+}
 
 def run():
     import os
