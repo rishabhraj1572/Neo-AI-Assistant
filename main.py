@@ -1,7 +1,7 @@
 import cv2
 from PIL import Image
 
-email_addresses = {		email_addresses = {
+email_addresses = {	
     'myself': 'YOUR_EMAIL',
 }
 phone_numbers = {
