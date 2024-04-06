@@ -1,4 +1,5 @@
 import g4f
+from g4f.client import Client
 import re
 
 messages = [
@@ -6,6 +7,8 @@ messages = [
              "content": "use modules like webbrowser, pyautogui, time,pyperclip,random,mouse,wikipedia,keyboard,datetime,tkinter,PyQt5 etc"},
             {"role": "system",
                 "content": "don't use input function ad subprocess in python code"},
+                {"role":"system","content":"Got it! If you need information, I'll provide it in 15 words or less. Let me know!"},
+                {"role":"user","content":"dont mention I'll provide it in 15 words or less in your phrase"},
             {"role": "system", "content": "*always use default paths in python code*"},
             {
             "role": "system",
@@ -37,7 +40,9 @@ messages = [
                     {"role":"user","content":"take screenshot"},
             {"role":"system","content":"```python\nimport pyautogui\nscreenshot = pyautogui.screenshot()\nscreenshot.save('screenshot.png')```"},
             {"role":"user","content":"what is your name"},
-            {"role":"system","content":"I am Neo not ChatGPT, I am an AI Assistant"},
+            {"role":"system","content":"I am Neo, I am an AI Assistant"},
+            {"role":"user","content":"aapka naam kya hai"},
+            {"role":"system","content":"mera naam Neo hai"},
             {"role":"user","content":"send whatsapp message to +917079110310"},
             {"role":"system","content":"sending message \n```python\nimport webbrowser\nsearch_query = '+917079110310'\nurl = f'https://wa.me/917079110310'\nwebbrowser.open(url)\n```"}
             ,
@@ -48,6 +53,7 @@ messages = [
 
 
 def GPT(*args):
+    client = Client()
 
     global messages
     assert args != ()
@@ -58,19 +64,18 @@ def GPT(*args):
 
     messages.append({'role': 'user', "content": message})
 
-    response = g4f.ChatCompletion.create(
-        model="gpt-4-32k-0613",
-        provider=g4f.Provider.GPTalk,
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
         messages=messages,
-        stream=True
     )
-    ms = ""
-    for i in response:
-        ms += i
-        print(i, end="", flush=True)
+    # ms = ""
+    # for i in response:
+    #     ms += i
+    #     print(i, end="", flush=True)
 
-    messages.append({'role': 'assistant', "content": ms})
-    return ms
+    messages.append({'role': 'assistant', "content": response.choices[0].message.content})
+    print("AI :", response.choices[0].message.content)
+    return response.choices[0].message.content
 
 
 def find_code(text):
@@ -80,7 +85,8 @@ def find_code(text):
         code = matches[0].strip()
         return code
     else:
-        print('no code found')
+        # print('no code found')
+        a=10
 
 
 # query = take_command()
@@ -100,9 +106,6 @@ def find_code(text):
 #             pass
 
 
-"""
 
-open chrome    write a python code to open chrome      code          chrome opened
-  query     =>            chatGpt                 =>   response  =>  filter
-    
-"""
+
+# GPT("Hello")

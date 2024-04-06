@@ -2,11 +2,19 @@ import cv2
 from PIL import Image
 
 email_addresses = {
-    'myself': 'YOUR_EMAIL',
+    'myself': 'rishabhpao2012@gmail.com',
+    'friend':'rajrishav011@gmail.com',
+    'alvin':'michaelalvinalbert@gmail.com',
+    'alwin':'michaelalvinalbert@gmail.com'
     }
 
 phone_numbers = {
-    'myself': 'YOUR_WHATSAPP_NUMBER',
+    'myself': '917079110310',
+    'friend':'918271228935',
+    'alvin':'916201049617',
+    'alwin':'916201049617',
+    'arca':'918389810093',
+    'arka':'918389810093',
     }
 
 def run():
@@ -47,11 +55,11 @@ def run():
         if 'Hello' in query or 'hello' in query:
             speak('Hello! How can I assist you today?')
 
-        elif 'write a note' in query or 'take a note' in query or 'take note' in query:
+        elif 'write a note' in query or 'take a note' in query or 'take note' in query  or 'write note' in query:
             write_note()
             # sleep_mode = True
 
-        elif 'take picture' in query or 'take pictures' in query  or 'click pictures' in query or 'click picture' in query:
+        elif 'take picture' in query or 'take pictures' in query  or 'click pictures' in query or 'click picture' in query or 'take a picture' in query:
             speak('Taking Picture')
             speak('Smile Please')
             take_picture()
@@ -67,8 +75,9 @@ def run():
 
         elif 'weather' in query or 'temperature' in query:
             from weather import weather,get_ip_location
-            print(get_ip_location(),":",weather(get_ip_location()))
-            speak(f'current temperature in {get_ip_location()} is {weather(get_ip_location())}')
+            # print(get_ip_location(),":",weather(get_ip_location()))
+            weath=weather('Chennai')
+            speak(f'current temperature in Chennai is {weath}')
         
         elif 'show picture' in query or ' show image' in query or 'show pictures' in query or 'show my picture' in query:
             try:
@@ -217,7 +226,7 @@ def run():
         #     speak('Stopping scroll process')
         #     # sleep_mode = True
             
-        elif query=='take screenshot' or query=='screenshot' or query== 'screen shot':
+        elif 'take screenshot' in query or 'screenshot' in query or 'screen shot' in query:
             speak('Taking Screenshot')
             print('Taking Screenshot...')
             screenshot = pyautogui.screenshot()
@@ -240,7 +249,7 @@ def run():
             # sleep_mode = True
     
 
-        elif 'show screenshot' in query or 'showscreenshot' in query:
+        elif query == 'show screenshot' or query=='showscreenshot':
             try:
                 from PIL import Image
                 speak('opening screenshot')
@@ -254,22 +263,23 @@ def run():
             # sleep_mode = True
 
         else:
-            from gpt4_free import GPT,find_code
-            # res = GPT(query)
-            # speak(res)
 
-            print('user: ' + query)
-            response = GPT(query)
-            python_code = find_code(response)
+                from gpt4_free import GPT,find_code
+                # res = GPT(query)
+                # speak(res)
 
-            if python_code:
-                response = response.replace(python_code, '').replace(
-                    'python', '').replace('```', '')
-                speak(response)
-                exec(python_code)
-            else:
+                print('user: ' + query)
+                response = GPT(query)
+                python_code = find_code(response)
+
+                if python_code:
+                    response = response.replace(python_code, '').replace(
+                        'python', '').replace('```', '')
                     speak(response)
-            # sleep_mode = True
+                    exec(python_code)
+                else:
+                        speak(response)
+                # sleep_mode = True
 
         while sleep_mode:
             query = take_command().lower()
