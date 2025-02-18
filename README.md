@@ -24,7 +24,6 @@ To run this project, follow these steps:
     python run.py
    ```
 
-
 ## License
 
 This project is licensed - see the [License.md](license.md) file for details.
